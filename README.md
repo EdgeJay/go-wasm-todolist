@@ -1,6 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# go-wasm-todolist
+Frontend application was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), while backend application is powered by [go](https://golang.org).
 
-## Available Scripts
+## System Requirements
+* Go 1.11+
+* Node.js 10.14.0+
+
+## Available Scripts (frontend)
 
 In the project directory, you can run:
 
