@@ -1,6 +1,7 @@
 {
   "name": "go-wasm-todolist",
   "version": "0.1.0",
+  "description": "Todolist built with golang, wasm and create-react-app",
   "private": true,
   "dependencies": {
     "@babel/core": "7.1.6",
