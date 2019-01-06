@@ -36,3 +36,6 @@ yarn-error.log*
 *.out
 
 .vscode
+
+# Third-party libraries installed by godep
+server/vendor
