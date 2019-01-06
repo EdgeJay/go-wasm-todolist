@@ -43,7 +43,24 @@ func TestNewTodoList(t *testing.T) {
 	}
 
 	if list.Items[0].AddedOn != addedOn {
-		t.Errorf(`Expected list.Items[0].AddedOn to be time.Now(), but got %v`, list.Items[0].AddedOn)
+		t.Errorf("Expected list.Items[0].AddedOn to be time.Now(), but got %v", list.Items[0].AddedOn)
+	}
+}
+
+func TestTodoListIDShouldNotBeEmpty(t *testing.T) {
+	list1 := NewBlankTodoList("Test List 1")
+
+	if len(list1.ID) == 0 {
+		t.Errorf("Expected list1.ID to be not empty")
+	}
+}
+
+func TestTodoListIDShouldBeUnique(t *testing.T) {
+	list1 := NewBlankTodoList("Test List 1")
+	list2 := NewBlankTodoList("Test List 2")
+
+	if list1.ID == list2.ID {
+		t.Errorf("Expected list1.ID to be not equal to list2.ID, but got same values: %s", list1.ID)
 	}
 }
 
