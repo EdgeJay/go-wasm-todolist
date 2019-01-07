@@ -1,11 +1,21 @@
 # go-wasm-todolist
 Frontend application was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), while backend application is powered by [go](https://golang.org).
 
-## System Requirements
+## Getting started
+
+### System Requirements
 * Go 1.11+
 * Node.js 10.14.0+
 
-## Available Scripts (frontend)
+### Local development setup
+1. Make sure you are using Node.js 10.14.0+, recommended to use [nvm](https://github.com/creationix/nvm) to manage multiple Node.js installations in same machine
+2. Run `npm install` or `yarn install`
+3. Run `npm start` or `yarn start`
+
+### How to build .wasm files using go build
+`GOOS=JS GOARCH=WASM go build -o filename.wasm`
+
+## Available Scripts (create-react-app)
 
 In the project directory, you can run:
 
