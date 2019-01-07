@@ -111,3 +111,15 @@ func TestNewTodoItem(t *testing.T) {
 		t.Errorf("Expected item.Desc to be not empty")
 	}
 }
+
+func TestNewTodoBoard(t *testing.T) {
+	board := NewTodoBoard()
+
+	if len(board.ID) == 0 {
+		t.Errorf("Expected board.ID to be not empty")
+	}
+
+	if reflect.TypeOf(board.Lists).Elem().Name() != "TodoList" {
+		t.Errorf("Expected board.Lists to be slice of TodoList")
+	}
+}

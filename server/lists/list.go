@@ -20,6 +20,12 @@ type TodoList struct {
 	Items []TodoItem
 }
 
+// TodoBoard manages a group of TodoLists
+type TodoBoard struct {
+	ID    string
+	Lists []TodoList
+}
+
 // NewBlankTodoList returns new list object
 func NewBlankTodoList(title string) TodoList {
 	list := TodoList{
@@ -48,6 +54,14 @@ func NewTodoItem(desc string) TodoItem {
 		AddedOn: time.Now(),
 	}
 	return item
+}
+
+// NewTodoBoard returns new TodoBoard
+func NewTodoBoard() TodoBoard {
+	board := TodoBoard{
+		ID: uuid.NewV4().String(),
+	}
+	return board
 }
 
 // AddItem adds new todo item to TodoList
