@@ -20,16 +20,6 @@ type TodoList struct {
 	Items []TodoItem
 }
 
-// AddItem adds new todo item to TodoList
-func (list *TodoList) AddItem(desc string) {
-	item := TodoItem{
-		ID:      uuid.NewV4().String(),
-		Desc:    desc,
-		AddedOn: time.Now(),
-	}
-	list.Items = append(list.Items, item)
-}
-
 // NewBlankTodoList returns new list object
 func NewBlankTodoList(title string) TodoList {
 	list := TodoList{
@@ -48,4 +38,20 @@ func NewTodoList(title string, items []TodoItem) TodoList {
 		Items: items,
 	}
 	return list
+}
+
+// NewTodoItem returns new item that can be added to todo list
+func NewTodoItem(desc string) TodoItem {
+	item := TodoItem{
+		ID:      uuid.NewV4().String(),
+		Desc:    desc,
+		AddedOn: time.Now(),
+	}
+	return item
+}
+
+// AddItem adds new todo item to TodoList
+func (list *TodoList) AddItem(desc string) {
+	item := NewTodoItem(desc)
+	list.Items = append(list.Items, item)
 }

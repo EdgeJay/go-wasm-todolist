@@ -80,11 +80,34 @@ func TestTodoListAddItem(t *testing.T) {
 	}
 }
 
+func TestTodoListAddItemIDShouldBeUnique(t *testing.T) {
+	title := "Test List"
+	list := NewBlankTodoList(title)
+	list.AddItem("Something todo")
+	list.AddItem("Something todo")
+
+	if list.Items[0].ID == list.Items[1].ID {
+		t.Errorf("Expected list.Items IDs to be unique")
+	}
+}
+
 func TestTodoItemShouldHaveID(t *testing.T) {
 	list := NewBlankTodoList("Test List")
 	list.AddItem("Something todo")
 
 	if len(list.Items[0].ID) == 0 {
 		t.Errorf("Expected list.Items[0].ID to be not empty")
+	}
+}
+
+func TestNewTodoItem(t *testing.T) {
+	item := NewTodoItem("Another thing todo")
+
+	if len(item.ID) == 0 {
+		t.Errorf("Expected item.ID to be not empty")
+	}
+
+	if len(item.Desc) == 0 {
+		t.Errorf("Expected item.Desc to be not empty")
 	}
 }
