@@ -80,6 +80,44 @@ func TestTodoListAddItem(t *testing.T) {
 	}
 }
 
+func TestTodoListAddItemShouldReturnID(t *testing.T) {
+	list := NewBlankTodoList("Another list")
+	itemID := list.AddItem("Something todo")
+
+	if len(itemID) == 0 {
+		t.Error("Expected list.AddItem to return ID")
+	}
+}
+
+func TestTodoListRemoveItem(t *testing.T) {
+	list := NewBlankTodoList("Another list")
+	itemID := list.AddItem("Something todo")
+	list.AddItem("Another thing todo")
+	count, err := list.RemoveItem(itemID)
+
+	if count != 1 {
+		t.Errorf("Expected count returned from list.RemoveItem to be 1, but got %d instead", count)
+	}
+
+	if err != nil {
+		t.Error("Expected list.RemoveItem to not return error")
+	}
+}
+
+func TestTodoListRemoveItemShouldReturnError(t *testing.T) {
+	list := NewBlankTodoList("Another list")
+	list.AddItem("Something todo")
+	_, err := list.RemoveItem("fake item ID")
+
+	if err == nil {
+		t.Error("Expected list.RemoveItem to return error")
+	}
+
+	if err.Error() != "Item not found" {
+		t.Error(`Expected list.RemoveItem to return "Item not found" error`)
+	}
+}
+
 func TestTodoListAddItemIDShouldBeUnique(t *testing.T) {
 	title := "Test List"
 	list := NewBlankTodoList(title)

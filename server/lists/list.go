@@ -1,6 +1,7 @@
 package lists
 
 import (
+	"errors"
 	"time"
 
 	uuid "github.com/satori/go.uuid"
@@ -65,7 +66,26 @@ func NewTodoBoard() TodoBoard {
 }
 
 // AddItem adds new todo item to TodoList
-func (list *TodoList) AddItem(desc string) {
+func (list *TodoList) AddItem(desc string) string {
 	item := NewTodoItem(desc)
 	list.Items = append(list.Items, item)
+	return item.ID
+}
+
+func (list *TodoList) RemoveItem(itemID string) (count int, err error) {
+	index := -1
+	for idx, item := range list.Items {
+		if item.ID == itemID {
+			index = idx
+		}
+	}
+
+	if index != -1 {
+		list.Items = append(list.Items[:index], list.Items[index+1:]...)
+		count = len(list.Items)
+	} else {
+		err = errors.New("Item not found")
+	}
+
+	return
 }
