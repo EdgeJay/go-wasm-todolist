@@ -4,6 +4,8 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	uuid "github.com/satori/go.uuid"
 )
 
 func TestNewBlankTodoList(t *testing.T) {
@@ -31,7 +33,11 @@ func TestNewTodoList(t *testing.T) {
 	addedOn := time.Now()
 	title := "Test List"
 	list := NewTodoList(title, []TodoItem{
-		TodoItem{"Foo", addedOn},
+		TodoItem{
+			ID:      uuid.NewV4().String(),
+			Desc:    "Foo",
+			AddedOn: addedOn,
+		},
 	})
 
 	if len(list.Items) != 1 {
@@ -71,5 +77,14 @@ func TestTodoListAddItem(t *testing.T) {
 
 	if len(list.Items) != 1 {
 		t.Errorf("Expected list.Items length to be 1, but got %d", len(list.Items))
+	}
+}
+
+func TestTodoItemShouldHaveID(t *testing.T) {
+	list := NewBlankTodoList("Test List")
+	list.AddItem("Something todo")
+
+	if len(list.Items[0].ID) == 0 {
+		t.Errorf("Expected list.Items[0].ID to be not empty")
 	}
 }

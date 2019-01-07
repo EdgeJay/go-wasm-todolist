@@ -8,6 +8,7 @@ import (
 
 // TodoItem represents a item in todo list
 type TodoItem struct {
+	ID      string
 	Desc    string
 	AddedOn time.Time
 }
@@ -22,6 +23,7 @@ type TodoList struct {
 // AddItem adds new todo item to TodoList
 func (list *TodoList) AddItem(desc string) {
 	item := TodoItem{
+		ID:      uuid.NewV4().String(),
 		Desc:    desc,
 		AddedOn: time.Now(),
 	}
