@@ -2,6 +2,17 @@
 
 
 [[projects]]
+  digest = "1:815669cecf813a53bc3684e16def8c2eb667968abe5c05d8fdb20de8530b89fb"
+  name = "github.com/dennwc/dom"
+  packages = [
+    ".",
+    "js",
+  ]
+  pruneopts = "UT"
+  revision = "895bb76ea18d7c43b4a426562e5fb3ff14839260"
+  version = "v0.2.1"
+
+[[projects]]
   digest = "1:274f67cb6fed9588ea2521ecdac05a6d62a8c51c074c1fccc6a49a40ba80e925"
   name = "github.com/satori/go.uuid"
   packages = ["."]
@@ -12,6 +23,9 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/satori/go.uuid"]
+  input-imports = [
+    "github.com/dennwc/dom",
+    "github.com/satori/go.uuid",
+  ]
   solver-name = "gps-cdcl"
   solver-version = 1
